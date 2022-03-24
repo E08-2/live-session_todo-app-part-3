@@ -1,0 +1,22 @@
+body {
+    margin: 10px;
+}
+
+input {
+    margin-bottom: 10px;
+}
+
+button {
+    margin-bottom: 10px;
+}
+
+.todo {
+    margin: 10px 0 20px 0;
+    padding: 10px;
+    border: 1px solid;
+}
+
+.delete {
+    padding-left: 10px;
+    cursor: pointer;
+}
