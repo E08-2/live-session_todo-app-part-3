@@ -12,11 +12,7 @@ const App = () => {
     // State variable to track what the user types in the input before they click the button
     const [ currentToDo, setCurrentToDo ] = useState({text: "", id: currentId});
     // State variable to store completed "todo" items
-    const [ doneItems, setDoneItems ] = useState([
-        { text: "Something I did last week", id: 1 },
-        { text: "Something I did yesterday", id: 2 },
-        { text: "Something I did this morning", id: 3 }
-    ]); 
+    const [ doneItems, setDoneItems ] = useState([]); 
 
     // A function to update the currentToDo variable every time something changes inside the input
     const updateCurrentToDo = event => {
@@ -52,6 +48,25 @@ const App = () => {
         // Update the doneItems array in state with the new array...
         setDoneItems(updatedDoneItems);
     }
+
+    // New function to change a "To Do" item into a "Done" item
+    const changeItemToDone = id => {
+        // Find the item the user clicked from the "toDos" state array...
+        const clickedItem = toDos.find(obj => obj.id === id);
+        
+        // ? Alternatively you could use .filter(), but remember this will return an ARRAY with the item inside it!
+        //const clickedItem = toDos.filter(obj => obj.id === id);
+        
+        // Use .filter() to create a new array containing all the "to dos" EXCEPT the one the user clicked
+        const restOfToDos = toDos.filter(obj => obj.id !== id);
+
+        // Update state so the "to do" item the user clicked:
+        // 1. Is removed from the "toDos" state array
+        // 2. Is added to the "doneItems" state array
+        // Updating state will cause the app to re-render, so the user will see the changes in the browser. :-)
+        setToDos(restOfToDos);
+        setDoneItems([...doneItems, clickedItem]);
+    }
     
     return (
         <>
@@ -65,7 +80,7 @@ const App = () => {
             <h2>TO-DO</h2>
 
             {/* Render each of the user's current to-do items in JSX inside the <ToDoList /> component */}
-            <ToDoList data={toDos} />
+            <ToDoList data={toDos} change={changeItemToDone} />
 
             <h2>DONE</h2>
 
