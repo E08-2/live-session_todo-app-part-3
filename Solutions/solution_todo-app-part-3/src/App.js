@@ -45,13 +45,12 @@ const App = () => {
 
     // New function to delete the item the user clicked from the "doneItems" array
     const deleteDoneItem = id => {
-        // alert(id);
+        // Create an array which contains all the done items...
+        // ... minus the one the user clicked on to call this function!
+        const updatedDoneItems = doneItems.filter(obj => obj.id !== id);
 
-        // Take the id received from the item the user clicked
-        // Change the state array "doneItems"
-        // To remove/delete the item the user clicked
-        // You can use filter() to do this!
-        // And setDoneItems() to change the state array!
+        // Update the doneItems array in state with the new array...
+        setDoneItems(updatedDoneItems);
     }
     
     return (

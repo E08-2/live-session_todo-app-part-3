@@ -6,7 +6,7 @@ const DoneList = props => {
         <div>
             {
                 props.data.map(obj => {
-                    return <DoneItem content={obj.text} id={obj.id} delete={props.delete} />
+                    return <DoneItem key={obj.id} content={obj.text} id={obj.id} delete={props.delete} />
                 })
             }
         </div>
